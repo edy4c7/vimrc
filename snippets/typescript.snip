@@ -1,0 +1,58 @@
+snippet     arrow_function
+alias       afunc
+abbr        (argment1,argment2,...) => {...}
+options     head
+    (${1:#:arguments}) => {
+        ${0}
+    }
+
+snippet     class
+options     head
+    class ${1:ClassName}{
+        ${0}  
+    }
+ 
+snippet     constructor
+alias       cstrct
+options     head
+    constructor(${1:#:arguments}){
+        ${0}
+    }
+
+snippet     function
+alias       func
+options     head
+    function ${1:functionName}(${2:#:arguments})${3:#:return_type}{
+        ${0}
+    }
+
+snippet     imreq
+abbr        import ... = require('...');
+options     head
+    import ${1:alias} = require('${2:module_name}');
+    ${0}
+    
+snippet     property
+alias       prop
+abbr        private _num; get Num(){...} set Num(value){...}
+options     head
+    ${1:private} ${2:#:Name}:${3:#:Type};
+    get ${4:#:Name}():$3{
+        ${5:return $2;}
+    }
+    set $4(value:$3){
+        ${6:$2 = value;} 
+    }
+    
+    ${0}
+
+snippet     readonly_property
+alias       roprop
+abbr        private _num; get Num(){...} 
+options     head
+    ${1:private} ${2:#:Name}:${3:#:Type};
+    get ${4:#:Name}():$3{
+        ${5:return $2;}
+    }
+    
+    ${0}
