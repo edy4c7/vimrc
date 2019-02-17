@@ -83,19 +83,19 @@ if = '!has("nvim")'
 repo = 'roxma/vim-hug-neovim-rpc'
 if = '!has("nvim")'
 
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-if = 'has("python3")'
-on_i = 1
-hook_add = '''
-  let g:deoplete#enable_at_startup = 1
-  
-  inoremap <silent><expr> <tab> pumvisible() ? "\<C-n>" :
-          \ neosnippet#expandable_or_jumpable() ? 
-          \ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-  inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS> deoplete#smart_close_popup()."\<BS>"
-'''
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+# if = 'has("python3")'
+# on_i = 1
+# hook_add = '''
+#   let g:deoplete#enable_at_startup = 1
+#   
+#   inoremap <silent><expr> <tab> pumvisible() ? "\<C-n>" :
+#           \ neosnippet#expandable_or_jumpable() ? 
+#           \ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+#   inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+#   inoremap <expr><BS> deoplete#smart_close_popup()."\<BS>"
+# '''
 
 # [[plugins]]
 # repo = 'zchee/deoplete-jedi'
@@ -122,22 +122,44 @@ on_i = 1
 [[plugins]]
 repo = 'wavded/vim-stylus'
 
-[[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-if = 'has("win32")'
-rev = 'next'
-build = 'powershell -executionpolicy bypass -File install.ps1'
-hook_add = '''
-  set hidden
+# [[plugins]]
+# repo = 'autozimu/LanguageClient-neovim'
+# if = 'has("win32")'
+# rev = 'next'
+# build = 'powershell -executionpolicy bypass -File install.ps1'
+# hook_add = '''
+#   set hidden
+# 
+#   let g:LanguageClient_serverCommands = {
+#     \ 'python': ['pyls'],
+#     \ 'vue': ['vls'],
+#   \ }
+# '''
+# 
+# [[plugins]]
+# repo = 'autozimu/LanguageClient-neovim'
+# if = '!has("win32")'
+# rev = 'next'
+# build = 'bash install.sh'
 
-  let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
-    \ 'vue': ['vls'],
-  \ }
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+  if executable('pyls')
+    autocmd User lsp_setup call lsp#register_server({
+    \ 'name': 'pyls',
+    \ 'cmd': { server_info -> ['pyls'] },
+    \ 'whitelist': ['python'],
+    \ })
+  endif
+  setlocal omnifunc=lsp#complete
 '''
 
 [[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-if = '!has("win32")'
-rev = 'next'
-build = 'bash install.sh'
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
