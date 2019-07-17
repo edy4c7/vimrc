@@ -26,6 +26,12 @@ hook_add = '''
 repo = 'Xuyuanp/nerdtree-git-plugin'
 
 [[plugins]]
+repo = 'osyo-manga/vim-precious'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+
+[[plugins]]
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
@@ -50,11 +56,19 @@ repo = 'isRuslan/vim-es6'
 on_ft = 'javascript'
 
 [[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'wavded/vim-stylus'
+
+[[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'honza/vim-snippets'
 
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
 
 #[[plugins]]
 #repo = 'thinca/vim-quickrun'
@@ -83,64 +97,61 @@ if = '!has("nvim")'
 repo = 'roxma/vim-hug-neovim-rpc'
 if = '!has("nvim")'
 
-# [[plugins]]
-# repo = 'Shougo/deoplete.nvim'
-# if = 'has("python3")'
-# on_i = 1
-# hook_add = '''
-#   let g:deoplete#enable_at_startup = 1
-#   
-#   inoremap <silent><expr> <tab> pumvisible() ? "\<C-n>" :
-#           \ neosnippet#expandable_or_jumpable() ? 
-#           \ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-#   inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-#   inoremap <expr><BS> deoplete#smart_close_popup()."\<BS>"
-# '''
+[[plugins]]
+repo = 'vim-vdebug/vdebug'
+
+ #[[plugins]]
+ #repo = 'Shougo/deoplete.nvim'
+ #if = 'has("python3")'
+ #on_i = 1
+ #hook_add = '''
+   #let g:deoplete#enable_at_startup = 1
+   
+   #inoremap <silent><expr> <tab> pumvisible() ? "\<C-n>" :
+           #\ neosnippet#expandable_or_jumpable() ? 
+           #\ "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+   #inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+   #inoremap <expr><BS> deoplete#smart_close_popup()."\<BS>"
+ #'''
+
+ #[[plugins]]
+ #repo = 'autozimu/LanguageClient-neovim'
+ #if = 'has("win32")'
+ #rev = 'next'
+ #build = 'powershell -executionpolicy bypass -File install.ps1'
+ #hook_add = '''
+   #set hidden
+ 
+   #let g:LanguageClient_serverCommands = {
+     #\ 'python': ['pyls'],
+     #\ 'vue': ['vls'],
+   #\ }
+ #'''
+ 
+ #[[plugins]]
+ #repo = 'autozimu/LanguageClient-neovim'
+ #if = '!has("win32")'
+ #rev = 'next'
+ #build = 'bash install.sh'
 
 # [[plugins]]
 # repo = 'zchee/deoplete-jedi'
 # on_i = 1
 
-[[plugins]]
-repo = 'posva/vim-vue'
-
-[[plugins]]
-repo = 'mhartington/nvim-typescript'
-if = 'has("nvim")'
-depends = 'Shougo/deoplete.nvim'
-on_ft = 'typescript'
+#[[plugins]]
+#repo = 'mhartington/nvim-typescript'
+#if = 'has("nvim")'
+#depends = 'Shougo/deoplete.nvim'
+#on_ft = 'typescript'
 
 # [[plugins]]
 # repo = 'fishbullet/deoplete-ruby'
 # depends = 'Shougo/deoplete.nvim'
 # on_i = 1
 
-[[plugins]]
-repo = 'zchee/deoplete-docker'
-on_i = 1
-
-[[plugins]]
-repo = 'wavded/vim-stylus'
-
-# [[plugins]]
-# repo = 'autozimu/LanguageClient-neovim'
-# if = 'has("win32")'
-# rev = 'next'
-# build = 'powershell -executionpolicy bypass -File install.ps1'
-# hook_add = '''
-#   set hidden
-# 
-#   let g:LanguageClient_serverCommands = {
-#     \ 'python': ['pyls'],
-#     \ 'vue': ['vls'],
-#   \ }
-# '''
-# 
-# [[plugins]]
-# repo = 'autozimu/LanguageClient-neovim'
-# if = '!has("win32")'
-# rev = 'next'
-# build = 'bash install.sh'
+#[[plugins]]
+#repo = 'zchee/deoplete-docker'
+#on_i = 1
 
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
@@ -152,6 +163,26 @@ hook_add = '''
     \ 'whitelist': ['python'],
     \ })
   endif
+  if executable('gopls')
+    augroup LspGo
+      au!
+      autocmd User lsp_setup call lsp#register_server({
+          \ 'name': 'go-lang',
+          \ 'cmd': {server_info->['gopls']},
+          \ 'whitelist': ['go'],
+          \ })
+      "autocmd FileType go nmap <buffer> gd <plug>(lsp-definition)
+      "autocmd FileType go nmap <buffer> ,n <plug>(lsp-next-error)
+      "autocmd FileType go nmap <buffer> ,p <plug>(lsp-previous-error)
+    augroup END
+  endif
+  au User lsp_setup call lsp#register_server({
+    \ 'name': 'intelephense',
+    \ 'cmd': {server_info->['node', expand('C:\\Program Files (x86)\\Nodist\\bin\\node_modules\\intelephense\\lib\\intelephense.js'), '--stdio']},
+    \ 'initialization_options': {"storagePath": expand($tmp)."\\intelephense"},
+    \ 'whitelist': ['php'],
+    \ })
+  " let g:lsp_log_file = expand('~/vim-lsp.log')
   setlocal omnifunc=lsp#complete
 '''
 
@@ -163,3 +194,19 @@ repo = 'prabirshrestha/asyncomplete.vim'
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-neosnippet.vim'
+hook_add = '''
+  call asyncomplete#register_source(asyncomplete#sources#neosnippet#get_source_options({
+    \ 'name': 'neosnippet',
+    \ 'whitelist': ['*'],
+    \ 'completor': function('asyncomplete#sources#neosnippet#completor'),
+    \ }))
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-k>     <Plug>(neosnippet_expand_target)
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'

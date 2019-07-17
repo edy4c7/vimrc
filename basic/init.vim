@@ -51,6 +51,11 @@ set noerrorbells
 set laststatus=2
 
 "---------------------
+"Signcolumn
+"---------------------
+set scl=yes
+
+"---------------------
 "Set split directions
 "---------------------
 set splitright
@@ -71,7 +76,10 @@ set nocp
 set autochdir
 set tags=./tags;
 
+set noswapfile
+set nobackup
+set noundofile
+
 " setlocal omnifunc=syntaxcomplete#Complete
 " autocmd FileType typescript setlocal completeopt-=menu
-
 

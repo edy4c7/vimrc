@@ -5,21 +5,6 @@ on_path = '.*'
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
-# [[plugins]]
-# repo = 'Shougo/neosnippet.vim'
-# depends = ['neosnippet-snippets','vim-snippets']
-# on_i = 1
-# on_ft = 'snippet'
-# hook_source = '''
-#   imap <C-k> <Plug>(neosnippet_expand_or_jump)
-#   smap <C-k> <Plug>(neosnippet_expand_or_jump)
-#   xmap <C-k> <Plug>(neosnippet_expand_target)
-#   
-#   if has('conceal')
-#     set conceallevel=2 concealcursor=niv
-#   endif
-# '''
-
 [[plugins]]
 repo  = 'Quramy/tsuquyomi'
 if = '!has("nvim")'
@@ -29,8 +14,6 @@ on_ft = 'typescript'
 repo = 'plasticboy/vim-markdown'
 on_ft = 'markdown'
 
-[[plugins]]
-repo = 'scrooloose/syntastic'
 
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
@@ -57,8 +40,5 @@ repo = 'pangloss/vim-javascript'
 on_ft = 'javascript'
 
 [[plugins]]
-repo = 'Townk/vim-autoclose'
-
-[[plugins]]
-repo = 'osyo-manga/vim-precious'
+repo = 'tpope/vim-surround'
 
