@@ -183,6 +183,10 @@ set smartcase
 
 set fileformats=unix,dos,mac
 
+set noswapfile
+set nobackup
+set noundofile
+
 if has('win32')
     set shell=cmd.exe
 elseif exists('$SHELL')
@@ -207,6 +211,7 @@ let g:session_command_aliases = 1
 syntax on
 set ruler
 set number
+set cursorline
 
 let no_buffers_menu=1
 colorscheme molokai
@@ -377,6 +382,12 @@ set autoread
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
+
+"" Cursor
+nnoremap j gj
+nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
 
 "" Split
 noremap <Leader>h :<C-u>split<CR>
