@@ -55,7 +55,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
+" Plug 'vim-scripts/CSApprox'
 Plug 'Raimondi/delimitMate'
 Plug 'majutsushi/tagbar'
 Plug 'dense-analysis/ale'
@@ -223,7 +223,7 @@ if has("gui_running")
     set transparency=7
   endif
 else
-  let g:CSApprox_loaded = 1
+  " let g:CSApprox_loaded = 1
 
   " IndentLine
   let g:indentLine_enabled = 1
